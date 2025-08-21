@@ -1,6 +1,6 @@
 # mathematics-agent
 
-A minimal mathematics agent that delegates all calculations to an MCP (Model Context Protocol) server. The agent uses MCP tools for every operation—no mental math so you get consistent, inspectable results.
+A minimal mathematics agent that delegates all calculations to an MCP (Model Context Protocol) server. The agent uses MCP tools for every operation no mental math so you get consistent, inspectable results.
 
 ## What’s inside
 - Agent: built with pydantic-ai, connected via MCP stdio
