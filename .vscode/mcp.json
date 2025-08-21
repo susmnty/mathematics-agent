@@ -1,13 +1,13 @@
 {
-	"servers": {
-		"MathsAgent": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"run",
-				"/Users/arjun/Projects/PydanticAgent/Aiotrix/mathsagent/main.py"
-			]
-		}
-	},
-	"inputs": []
+  "servers": {
+    "mathematics-agent": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "C:\\Users\\spkus\\OneDrive\\Desktop\\mathematics agent\\main.py"
+      ]
+    }
+  },
+  "inputs": []
 }
