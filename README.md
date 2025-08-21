@@ -35,8 +35,8 @@ Coming soon:
 	 cp .env.example .env
 	 ```
 	 - Set these keys:
-		 - `groq_key` — your Groq API key
-		 - `logfire_key` — your Logfire token
+		 - `groq_key` - your Groq API key
+		 - `logfire_key` - your Logfire token
 
 ## Run the agent
 Run with uv so dependencies are resolved and the MCP server is launched as a toolset:
