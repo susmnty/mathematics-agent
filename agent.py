@@ -8,10 +8,11 @@ import logfire
 
 load_dotenv()
 groq_key = os.getenv("groq_key")
+logfire_key = os.getenv("logfire_key")   # ✅ match your .env
 
 logfire.configure(
     send_to_logfire="if-token-present",
-    token=os.getenv("LOGFIRE_TOKEN") 
+    token=logfire_key
 )
 
 server = MCPServerStdio(
@@ -40,6 +41,7 @@ agent = Agent(
 )
 
 print("Math Agent ready! Type 'quit' to exit.\n")
+
 while True:
     user_input = input("Enter a math question: ")
     if user_input.lower() in ['quit', 'exit']:
