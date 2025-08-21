@@ -4,9 +4,15 @@ from pydantic_ai.providers.groq import GroqProvider
 from pydantic_ai.mcp import MCPServerStdio
 from dotenv import load_dotenv
 import os
+import logfire   
 
 load_dotenv()
 groq_key = os.getenv("groq_key")
+
+logfire.configure(
+    send_to_logfire="if-token-present",
+    token=os.getenv("LOGFIRE_TOKEN")  # put your logfire token in .env
+)
 
 server = MCPServerStdio(
     'python',           
@@ -33,7 +39,6 @@ agent = Agent(
     toolsets=[server]
 )
 
-# Interactive loop
 print("Math Agent ready! Type 'quit' to exit.\n")
 while True:
     user_input = input("Enter a math question: ")
@@ -43,5 +48,10 @@ while True:
         output = agent.run_sync(user_input)
         result_text = output.output.replace("$", "").strip()
         print(f"Result: {result_text}\n")
+
+        logfire.info("Math query succeeded", query=user_input, result=result_text)
+
     except Exception as e:
         print(f"Error: {e}\n")
+
+        logfire.error("Math query failed", query=user_input, error=str(e))
