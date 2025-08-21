@@ -11,7 +11,7 @@ groq_key = os.getenv("groq_key")
 
 logfire.configure(
     send_to_logfire="if-token-present",
-    token=os.getenv("LOGFIRE_TOKEN")  # put your logfire token in .env
+    token=os.getenv("LOGFIRE_TOKEN") 
 )
 
 server = MCPServerStdio(
