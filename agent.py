@@ -8,7 +8,7 @@ import logfire
 
 load_dotenv()
 groq_key = os.getenv("groq_key")
-logfire_key = os.getenv("logfire_key")   # ✅ match your .env
+logfire_key = os.getenv("logfire_key")   
 
 logfire.configure(
     send_to_logfire="if-token-present",
