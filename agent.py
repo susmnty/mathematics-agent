@@ -7,17 +7,16 @@ import os
 import logfire   
 
 load_dotenv()
-groq_key = os.getenv("groq_key")
-logfire_key = os.getenv("logfire_key")   
 
-logfire.configure(
-    send_to_logfire="if-token-present",
-    token=logfire_key
-)
+groq_key = os.getenv("groq_key")          
+logfire_token = os.getenv("logfire_key")  
+
+logfire.configure(token=logfire_token)
+logfire.instrument_pydantic_ai()
 
 server = MCPServerStdio(
-    'python',           
-    args=['mcp-server.py']
+    "python",           
+    args=["mcp-server.py"]
 )
 
 prompt = """
@@ -30,7 +29,7 @@ Math Agent using MCP tools. RULES:
 """
 
 model = GroqModel(
-    'qwen/qwen3-32b',
+    "qwen/qwen3-32b",
     provider=GroqProvider(api_key=groq_key)
 )
 
@@ -44,7 +43,7 @@ print("Math Agent ready! Type 'quit' to exit.\n")
 
 while True:
     user_input = input("Enter a math question: ")
-    if user_input.lower() in ['quit', 'exit']:
+    if user_input.lower() in ["quit", "exit"]:
         break
     try:
         output = agent.run_sync(user_input)
@@ -55,5 +54,4 @@ while True:
 
     except Exception as e:
         print(f"Error: {e}\n")
-
         logfire.error("Math query failed", query=user_input, error=str(e))
